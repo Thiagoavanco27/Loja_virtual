@@ -41,6 +41,10 @@ public class UserServiceImpl implements UserServiceInterface {
     @Override
     public UserResponseDto save(UserRequestDto userRequestDto) {
         // Cria uma nova instância de User.
+        return getUserResponseDto(userRequestDto);
+    }
+
+    private UserResponseDto getUserResponseDto(UserRequestDto userRequestDto) {
         User user = new User();
         // Define o nome do usuário a partir do DTO.
         user.setName(userRequestDto.getName());
@@ -53,7 +57,7 @@ public class UserServiceImpl implements UserServiceInterface {
         User savedUser = userRepository.save(user);
 
         // Cria um DTO de resposta com as informações do usuário salvo.
-       return getUserDto(savedUser);
+        return getUserDto(savedUser);
     }
 
     @Override
